@@ -23,11 +23,42 @@ Before you begin, ensure you have met the following requirements:
    ```bash
    git clone https://github.com/Roy263/task-manager-api
     ```
-2. Navigate to the project directory:
+2. Use of sequelize
+    ### Sequelize ORM
 
-   ```bash
-   cd task-manager-api
+    This application utilizes the Sequelize ORM (Object-Relational Mapping) to interact with the database. Sequelize is a powerful and flexible ORM that simplifies database operations by allowing you to work with JavaScript objects and functions instead of writing raw SQL queries.
+
+    #### Models
+
+    The core of Sequelize is its model system. In this application, we have a `Task` model that defines the structure of tasks and their attributes. The model is located in the `models` directory and is defined using Sequelize's `sequelize.define` method.
+
+    ```javascript
+    const { Sequelize, DataTypes } = require('sequelize');
+
+    module.exports = (sequelize) => {
+    const Task = sequelize.define('Task', {
+        title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        },
+        description: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+        },
+        status: {
+        type: DataTypes.ENUM('open', 'inprogress', 'completed'),
+        allowNull: false,
+        },
+    });
+
+    return Task;
+    };
     ```
+
+    #### Database Synchronization
+    In the app.js file, you'll find a function that synchronizes the database schema. When the application starts, Sequelize will automatically create the necessary tables if they don't exist. This ensures that the database schema matches the defined models.
+
+
 3. Install the project dependencies using npm:
 
    ```bash
@@ -57,6 +88,8 @@ Before you begin, ensure you have met the following requirements:
    ```bash
    npm test
     ```
+
+ 
 
 ## Usage
 

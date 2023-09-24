@@ -1,10 +1,10 @@
 const mysql = require('mysql2');
 require('dotenv').config()
 
-dbHost=process.env.db_host;
-dbName=process.env.db_name;
-dbUser=process.env.db_user;
-dbPass=process.env.db_pass;
+dbHost=process.env.DB_HOST;
+dbName=process.env.DB_NAME;
+dbUser=process.env.DB_USER;
+dbPass=process.env.DB_PASSWORD;
 
 const { Sequelize } = require('sequelize');
 
